@@ -162,7 +162,7 @@ jobs:
         # TODO: provisioning on k3d still leads to the first installer pod finishing with provisioner status Unknown and phase Failed
         if: matrix.config.type != 'k3d'
         run: |
-          timeout 60s bash -c 'until [[ "$(kubectl -n rcm get $(kubectl get pods -n rcm --no-headers -o name | grep install | head -n1) -o jsonpath="{.status.phase}" 2>/dev/null)" == "Succeeded" ]]; do sleep 2; done'
+          timeout 60s bash -c 'until [[ "$(kubectl -n rcm get $(kubectl get pods -n rcm --no-headers -o name | grep install | head -n1) -o jsonpath="{.status.phase}" 2>/dev/null)" == "Succeeded" ]]; kubectl describe pods -n rcm; do sleep 2; done'
 
       - name: run Spin App
         run: |
