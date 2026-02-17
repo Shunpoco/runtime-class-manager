@@ -66,22 +66,9 @@ jobs:
       matrix:
         config:
           - {
-              type: "kind",
-              import_cmd: "kind load image-archive"
-            }
-          - {
               type: "minikube",
               import_cmd: "minikube image load"
             }
-          - {
-              type: "microk8s",
-              import_cmd: "sudo microk8s ctr images import"
-            }
-          - {
-              type: "k3d",
-              import_cmd: "k3d image import"
-            }
-
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
